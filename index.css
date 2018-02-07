@@ -1,0 +1,58 @@
+*{
+  box-sizing: border-box;
+  color: white;
+}
+body {
+	
+	
+	background-color: #345A5E;
+
+}
+main{
+    background-image: url('https://hellodoktor.com/wp-content/uploads/2017/03/travel-1.jpg');
+    width: 100%;
+    height: 500px;
+    background-size: contain;
+    margin-left: auto;
+    margin-right: auto;
+    background-repeat: no-repeat;
+    
+}
+.container {
+	width: 100%;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid yellow;
+	background-color: #D25852;
+	
+}
+
+
+.white{
+  color:white;
+}
+.red-input:focus {
+  background: yellow;
+  color: red;
+}
+
+.blue-input:focus {
+  background: yellow;
+  color: blue;
+}
+.black{
+  color: black;
+}
+.results-container{
+  margin-top: 50px;
+  background-color: purple;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.css-input{
+  display: block;
+}
+.search-button{
+  margin-bottom: 30px;
+}
