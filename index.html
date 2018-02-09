@@ -4,6 +4,7 @@
 	<title>API Capstone Project</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<link href="index.css" rel="stylesheet" type="text/css">
+	<link href="float-grid.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<main role="main">
@@ -14,12 +15,16 @@
 			</header><!-- Form -->
 			<form action="#" class="search-form white">
 				<fieldset>
-					<legend>Searching for the movies you love</legend> <label for="search-item"></label> <input class="js-input css-input red-input" id="search-item" placeholder="Enter a title" type="text"> <button class="search-button red-input black" role="button" type="submit">Search</button> <input class="js-input css-input red-input" id="search-item" placeholder="Enter a year" type="text"> <button class="search-button red-input black" role="button" type="submit">Search</button>
+					<legend>Searching for the movies you love</legend> <label for="search-item"></label> <input class="js-input css-input red-input" id="search-item" placeholder="Enter a title" type="text"> <button class="search-button red-input black" role="button" type="submit">Search</button>
 				</fieldset>
 			</form><!--Results -->
-			<section aria-live="assertive" class="results-container" role="region">
-				<ul class="results"></ul>
-			</section>
+			<div class="row">
+				<div class="col-4">
+					<section aria-live="assertive" class="results-container" role="region">
+						<ul class="results"></ul>
+					</section>
+				</div>
+			</div>
 		</div><!-- container ends -->
 	</main>
 	<script src="//code.jquery.com/jquery.min.js">

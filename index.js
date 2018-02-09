@@ -1,46 +1,108 @@
-const apikey = 'eea50bd6';
-const ENDPOINT = `https://www.omdbapi.com/?apikey=${apikey}&`;
+const API_KEY = '152563cd6249fcadcfcebbf3e1da0380';
+const SEARCH_ENDPOINT = 'https://api.themoviedb.org/3/search/movie';
+const POPULAR_ENDPOINT = 'https://api.themoviedb.org/3/discover/movie';
+const GENRE_IDs_ENDPOINT = 'https://api.themoviedb.org/3/genre/movie/list';
 
-function render(data) {
-	console.log(data);
-	//console.log(data.Search);
-	$('.results').empty();
-	data.Search.map(movie => {
-		$('.results').append(`
-                <li> 
-                    <h2>${movie.Title}</h2>
-                    <h5>${movie.Year}</h5>
-                    <img src = ${movie.Poster}>
-                    
-              
-              
-              
-              `);
+function renderSearch(data) {
+  
+	data.results.map(movie => {
+		console.log(`MOVIE TITLE: ${movie.title}`);
+		console.log(`MOVIE OVERVIEW: ${movie.overview}`);
+		$('.results').append(
+		        `
+	          <li>
+	            <h2>${movie.title}</h2>
+              <h5>${movie.overview}</h5>
+            </li>
+            
+            `);
 	});
-	/*
-  $('.results').empty();
-	console.log(data.Title);
-	console.log(data.Year);
-	console.log(data.Plot);
-	console.log(data.Poster);
-	$('.results').append(`
 	
-	            <li> <h2>${data.Title}</h2>
-	                 <h4>${data.Year}</h4>
-	                 <p> ${data.Plot}</p>
-	                 <img src = ${data.Poster}>
-	
-	           `); */
 }
 
-function fetch(searchTerm, callback) {
-	const params = {
-		s: searchTerm,
-	};
-	$.getJSON(ENDPOINT, params, callback);
+function renderPopularTitles(data) {
+  
+	data.results.map(movie => {
+		console.log(`MOVIE TITLE: ${movie.title}`);
+		console.log(`POPULARITY: ${movie.popularity}`);
+		$('.results').append(
+		        `
+	          <li>
+	            <h2>${movie.title}</h2>
+              <h5>Popularity: ${movie.popularity}</h5>
+            </li>
+            
+            `);
+	});
+	
 }
+function renderGenreIDs(data) {
+  
+  console.log(data)
+  
+}
+
+function render(data){
+  
+  console.log(data);
+  
+}
+
+function fetch(settings, callback) {
+	// object destructoring
+	const {
+		url,
+		params
+	} = settings;
+	// identical to this
+	// const url = settings.url;
+	// const params = settings.params;
+	//
+	$.getJSON(url, params, callback);
+}
+
+function getPopularTitles() {
+	const settings = {
+		url: POPULAR_ENDPOINT,
+		params: {
+			api_key: API_KEY,
+			sort_by: 'popularity.desc'
+		}
+	};
+	fetch(settings, renderPopularTitles);
+}
+
+function searchTitles(searchTerm) {
+	const settings = {
+		url: SEARCH_ENDPOINT,
+		params: {
+			api_key: API_KEY,
+			query: searchTerm
+		}
+	};
+	fetch(settings, render);
+}
+
+function getGenreIds() {
+	const settings = {
+		url: GENRE_IDs_ENDPOINT,
+		params: {
+			api_key: API_KEY,
+		}
+	};
+	fetch(settings, renderGenreIDs);
+}
+
 $('.search-button').on('click', event => {
 	event.preventDefault();
-	let searchTerm = $('input').val();
-	fetch(searchTerm, render);
+	let searchTerm = $('input').val()
+	searchTitles(searchTerm);
+	//getPopularTitles();
+	//getGenreIds();
 });
+
+
+
+
+
+
