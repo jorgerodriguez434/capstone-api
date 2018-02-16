@@ -1,7 +1,8 @@
 const API_KEY = '152563cd6249fcadcfcebbf3e1da0380';
-const SEARCH_ENDPOINT = 'https://api.themoviedb.org/3/search/movie';
-const DISCOVER_ENDPOINT = 'https://api.themoviedb.org/3/discover/movie';
-const GENRE_TITLES_ENDPOINT = 'https://api.themoviedb.org/3/genre/movies';
+const BASE_URL = 'https://api.themoviedb.org/3';
+const SEARCH_ENDPOINT = `${BASE_URL}/search/movie`;
+const DISCOVER_ENDPOINT = `${BASE_URL}/discover/movie`;
+const GENRE_TITLES_ENDPOINT = `${BASE_URL}/genre/movies`;
 const IMG_ENDPOINT = 'https://image.tmdb.org/t/p/w500';
 
 const ACTION = 28;
@@ -11,150 +12,94 @@ const CRIME = 80;
 const DRAMA = 18;
 const FAMILY = 10751;
 
+const MAIN_PARAMS = {
+  api_key: API_KEY,
+  include_video: true,
+};
+
 function render(data) {
-	console.log(data);
-	$('.results').empty();
-	data.results.map(movie => {
-		$('.results').append(`
-	          <li>
-	            <h2>${movie.title}</h2>
-	            <ul>
+  $('.results').empty();
+  data.results.map(movie => {
+    $('.results').append(`
+            <li>
+              <h2>${movie.title}</h2>
+              <ul>
               <li>${movie.overview}</li>
               <li> Popularity: ${movie.popularity}</li>
               <li> Date Released: ${movie.release_date}</li>
-              <li> <img src = ${IMG_ENDPOINT}${movie.poster_path} class="poster-img" alt= ${movie.title}></li>
+              <li> <img src = ${IMG_ENDPOINT}${movie.poster_path} class="poster-img" alt= $
+      {movie.title
+    }></li>
               </ul>
-              
+
             </li>
-            
+
             `);
-	});
+  });
 }
 
-function fetch(settings, callback) {
-	// object destructoring
-	const {
-		url,
-		params
-	} = settings;
-	// identical to this
-	// const url = settings.url;
-	// const params = settings.params;
-	//
-	$.getJSON(url, params, callback);
+function fetch(settings) {
+  let { url, params, callback } = settings;
+  params.api_key = API_KEY;
+  if (!callback) {
+    callback = render;
+  }
+  $.getJSON(url, params, callback);
 }
 
-function getPopularTitles() {
-	const settings = {
-		url: DISCOVER_ENDPOINT,
-		params: {
-			api_key: API_KEY,
-			sort_by: 'popularity.desc',
-			include_video: true
-		}
-	};
-	fetch(settings, render);
+function addListener(selector, options) {
+  $(selector).on('click', event => {
+    event.preventDefault();
+    if (selector === '#search-button') {
+      const input = $('#search-value').val();
+      options.params.query = input;
+    }
+    fetch(options);
+  });
 }
 
-function getUpcomingTitles() {
-	const settings = {
-		url: DISCOVER_ENDPOINT,
-		params: {
-			api_key: API_KEY,
-			sort_by: 'release_date.desc',
-			include_video: true
-		}
-	};
-	fetch(settings, render);
-}
+addListener('#search-button', {
+  url: SEARCH_ENDPOINT,
+  params: {
+    sort_by: 'popularity.desc',
+  },
+});
 
-function searchTitles(searchTerm) {
-	const settings = {
-		url: SEARCH_ENDPOINT,
-		params: {
-			api_key: API_KEY,
-			query: searchTerm,
-			include_video: true
-		}
-	};
-	fetch(settings, render);
-}
+addListener('.popular-button', {
+  url: DISCOVER_ENDPOINT,
+  params: {
+    sort_by: 'popularity.desc',
+  },
+});
 
-function getGenreTitles(genre_id) {
-	const settings = {
-		url: `https://api.themoviedb.org/3/genre/${genre_id}/movies`,
-		params: {
-			api_key: API_KEY,
-			include_video: true
-		}
-	};
-	fetch(settings, render);
-}
+addListener('.upcoming-button', {
+  url: DISCOVER_ENDPOINT,
+  params: {
+    sort_by: 'release_date.desc',
+  },
+});
 
-function handleSearchButton() {
-	$('.search-button').on('click', event => {
-		event.preventDefault();
-		let searchTerm = $('input').val()
-		searchTitles(searchTerm);
-	});
-}
+addListener('.action-button', {
+  url: `${BASE_URL}/genre/${ACTION}/movies`,
+  params: {},
+});
 
-function handlePopularButton() {
-	$('.popular-button').on('click', event => {
-		event.preventDefault();
-		getPopularTitles();
-	});
-}
+addListener('.comedy-button', {
+  url: `${BASE_URL}/genre/${COMEDY}/movies`,
+  params: {},
+});
 
-function handleActionButton() {
-	$('.action-button').on('click', event => {
-		event.preventDefault();
-		getGenreTitles(ACTION);
-	});
-}
+addListener('.crime-button', {
+  url: `${BASE_URL}/genre/${CRIME}/movies`,
+  params: {},
+});
 
-function handleComedyButton() {
-	$('.comedy-button').on('click', event => {
-		event.preventDefault();
-		getGenreTitles(COMEDY);
-	});
-}
+addListener('.drama-button', {
+  url: `${BASE_URL}/genre/${DRAMA}/movies`,
+  params: {},
+});
 
-function handleCrimeButton() {
-	$('.crime-button').on('click', event => {
-		event.preventDefault();
-		getGenreTitles(CRIME);
-	});
-}
-
-function handleDramaButton() {
-	$('.drama-button').on('click', event => {
-		event.preventDefault();
-		getGenreTitles(DRAMA);
-	});
-}
-
-function handleFamilyButton() {
-	$('.family-button').on('click', event => {
-		event.preventDefault();
-		getGenreTitles(FAMILY);
-	});
-}
-
-function handleUpcomingTitlesButton() {
-	$('.in-theatres-button').on('click', event => {
-		event.preventDefault();
-		getUpcomingTitles();
-	});
-}
-handleSearchButton();
-handlePopularButton();
-handleActionButton();
-handleComedyButton();
-handleCrimeButton();
-handleDramaButton();
-handleFamilyButton();
-handleUpcomingTitlesButton();
-
-
-
+addListener('.family-button', {
+  url: `${BASE_URL}/genre/${FAMILY}/movies`,
+  params: {},
+});
