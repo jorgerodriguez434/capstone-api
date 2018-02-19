@@ -16,25 +16,24 @@ const FAMILY = 10751;
 
 function render(data) {
   $('.results').empty();
-  data.results.map(movie => {
-    if (data.results.length === 0) {
+  if (data.results.length === 0) {
       $('.results').text(`Oops! There is no title!`);
 }
+  
 else{
+    data.results.map(movie => {
     $('.results').append(`
             <li>
               <h2>${movie.title}</h2>
               <p>${movie.overview}</p>
               <p> Popularity: ${movie.popularity}<p>
               <p> Date Released: ${movie.release_date}<p>
-              <img src = ${IMG_ENDPOINT}${movie.poster_path} class="poster-img" alt= $
-      {movie.title
-    }>
+              <img src = ${IMG_ENDPOINT}${movie.poster_path} class="poster-img" alt= ${movie.title}>
             </li>
 
             `);
-}
   });
+}//else
 }
 
 function fetch(settings) {
