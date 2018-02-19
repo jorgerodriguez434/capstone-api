@@ -1,5 +1,5 @@
 # Movie Search Engine
-The overarching UX (user experience) requirement for this app is that it pulls in data from third party APIs and displays that data in some way to your user. 
+The overarching UX (user experience) requirement for this app is that it pulls in data from third party APIs and displays that data in some way to your user. A user can search movies that are avalaible, or explore different categories such as different genres, popular titles, and what is playing in today's date.
 
 ## Screenshots
 <img width="1437" alt="1" src="https://user-images.githubusercontent.com/18128525/36384655-a3b192dc-1555-11e8-818a-e877beb22bb6.png">
