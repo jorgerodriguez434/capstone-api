@@ -5,28 +5,39 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<link href="index.css" rel="stylesheet" type="text/css">
 	<link href="float-grid.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,400,500,600,700,900" rel="stylesheet"> 
 </head>
 <body>
-	<main role="main">
-		<div class="container">
-			<!--Headers -->
+  <!--Headers -->
 			<header role="banner">
-				<h1>API Capstone Project</h1>
-			</header><!-- Form -->
-			<form action="#" class="search-form white">
+				<h1><span>Movie</span>Search</h1>
+				<p>A movie search engine that you will love.</p>
+			</header>
+	<main role="main">
+	 <div class="outside-container">
+		<div class="container">
+			<!-- Form -->
+			<form action="#" class="search-form">
 				<fieldset>
-					<legend>Searching for the movies you love</legend> <label for="search-item"></label> <input class="js-input css-input red-input" id="search-value" placeholder="Enter a title" type="text"> <button class="search-button red-input black" id="search-button" role="button" type="submit">Search</button>
+					<legend>Searching for the movies you love</legend> <label for="search-item"></label> <input class="js-input css-input yellow-background" id="search-value" placeholder="Enter a title" type="text"> <button class="button search-button blue-input black" id="search-button" role="button" type="submit">Search</button>
 				</fieldset>
 			</form><!--Results -->
-			<button class="button popular-button red-input black" role="button" type="button">What is popular right now?</button><button class="button action-button red-input black" role="button" type="button">Action</button> <button class="button comedy-button red-input black" role="button" type="button">Comedy</button> <button class="button crime-button red-input black" role="button" type="button">Crime</button> <button class="button drama-button red-input black" role="button" type="button">Drama</button> <button class="button family-button red-input black" role="button" type="button">Family</button> <button class="button in-theatres-button red-input black" role="button" type="button">Coming soon!</button>
+			<section class="button-container" role="region">
+			<button class="button popular-button blue-background black" role="button" type="button">What is popular right now?</button>
+			<button class="button action-button blue-background black" role="button" type="button">Action</button> 
+			<button class="button comedy-button blue-background black" role="button" type="button">Comedy</button> 
+			<button class="button crime-button blue-background black" role="button" type="button">Crime</button> 
+			<button class="button drama-button blue-background black" role="button" type="button">Drama</button> 
+			<button class="button family-button blue-background black" role="button" type="button">Family</button> 
+			<button class="button now-playing-button blue-background black" role="button" type="button">Now Playing!</button>
+			</section> <!-- button-container ends -->
 			<div class="row">
-				<div class="col-12">
-					<section aria-live="assertive" class="results-container" role="region">
-						<ul class="results"></ul>
-					</section>
-				</div>
+				<section class="col-6" role="region">
+						<ul class="results" aria-live="assertive"></ul>
+				</section>
 			</div>
 		</div><!-- container ends -->
+		</div><!-- outside-container container ends-->
 	</main>
 	<script src="https://code.jquery.com/jquery.min.js">
 	</script> 

@@ -3,6 +3,8 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const SEARCH_ENDPOINT = `${BASE_URL}/search/movie`;
 const DISCOVER_ENDPOINT = `${BASE_URL}/discover/movie`;
 const GENRE_TITLES_ENDPOINT = `${BASE_URL}/genre/movies`;
+const UPCOMING_TITLES_ENDPOINT = `${BASE_URL}/movie/upcoming`;
+const NOW_PLAYING_ENDPOINT = `${BASE_URL}/movie/now_playing`;
 const IMG_ENDPOINT = 'https://image.tmdb.org/t/p/w500';
 
 const ACTION = 28;
@@ -12,29 +14,26 @@ const CRIME = 80;
 const DRAMA = 18;
 const FAMILY = 10751;
 
-const MAIN_PARAMS = {
-  api_key: API_KEY,
-  include_video: true,
-};
-
 function render(data) {
   $('.results').empty();
   data.results.map(movie => {
+    if (data.results.length === 0) {
+      $('.results').text(`Oops! There is no title!`);
+}
+else{
     $('.results').append(`
             <li>
               <h2>${movie.title}</h2>
-              <ul>
-              <li>${movie.overview}</li>
-              <li> Popularity: ${movie.popularity}</li>
-              <li> Date Released: ${movie.release_date}</li>
-              <li> <img src = ${IMG_ENDPOINT}${movie.poster_path} class="poster-img" alt= $
+              <p>${movie.overview}</p>
+              <p> Popularity: ${movie.popularity}<p>
+              <p> Date Released: ${movie.release_date}<p>
+              <img src = ${IMG_ENDPOINT}${movie.poster_path} class="poster-img" alt= $
       {movie.title
-    }></li>
-              </ul>
-
+    }>
             </li>
 
             `);
+}
   });
 }
 
@@ -54,6 +53,7 @@ function addListener(selector, options) {
       const input = $('#search-value').val();
       options.params.query = input;
     }
+    input = $('#search-value').val("");
     fetch(options);
   });
 }
@@ -72,11 +72,9 @@ addListener('.popular-button', {
   },
 });
 
-addListener('.upcoming-button', {
-  url: DISCOVER_ENDPOINT,
-  params: {
-    sort_by: 'release_date.desc',
-  },
+addListener('.now-playing-button', {
+  url: NOW_PLAYING_ENDPOINT,
+  params: {},
 });
 
 addListener('.action-button', {
@@ -103,3 +101,9 @@ addListener('.family-button', {
   url: `${BASE_URL}/genre/${FAMILY}/movies`,
   params: {},
 });
+
+
+
+
+
+
