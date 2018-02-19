@@ -8,7 +8,6 @@ The app should do something interesting: The overarching UX (user experience) re
 <img width="544" alt="4" src="https://user-images.githubusercontent.com/18128525/36385803-46e99d48-1559-11e8-999f-db1ff0cba03c.png">
 
 ## Built With
-### Front-End
 * JavaScript
 * CSS
 * HTML
