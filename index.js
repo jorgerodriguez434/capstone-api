@@ -15,14 +15,12 @@ const DRAMA = 18;
 const FAMILY = 10751;
 
 function render(data) {
-  $('.results').empty();
-  if (data.results.length === 0) {
-      $('.results').text(`Oops! There is no title!`);
-}
-  
-else{
-    data.results.map(movie => {
-    $('.results').append(`
+	$('.results').empty();
+	if (data.results.length === 0) {
+		$('.results').text(`Oops! There is no title!`);
+	} else {
+		data.results.map(movie => {
+			$('.results').append(`
             <li>
               <h2>${movie.title}</h2>
               <p>${movie.overview}</p>
@@ -32,8 +30,8 @@ else{
             </li>
 
             `);
-  });
-}//else
+		});
+	}
 }
 
 function fetch(settings) {
