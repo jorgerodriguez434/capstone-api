@@ -1,5 +1,5 @@
 # Movie Search Engine
-The app should do something interesting: The overarching UX (user experience) requirement for this app is that it pulls in data from third party APIs and displays that data in some way to your user. It's up to you to figure out how to make this experience feel compelling to the user, and who it is that you want to make something interesting for. If you choose to work with only 1 API, you must do something with the data to present it in an original or interesting way.
+The overarching UX (user experience) requirement for this app is that it pulls in data from third party APIs and displays that data in some way to your user. 
 
 ## Screenshots
 <img width="1437" alt="1" src="https://user-images.githubusercontent.com/18128525/36384655-a3b192dc-1555-11e8-818a-e877beb22bb6.png">
