@@ -24,9 +24,9 @@ header h1 {
   margin: right 40px;
 }
 header h1 span {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 5rem;
-  color: blue;
+  color: tomato;
 }
 input:hover {
   color: blue;
