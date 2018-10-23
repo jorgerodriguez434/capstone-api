@@ -7,7 +7,7 @@ A user can search movies that are avalaible, or explore different categories suc
 <img width="497" alt="2" src="https://user-images.githubusercontent.com/18128525/36384796-245ab35a-1556-11e8-8cee-efee95f4dd62.png">
 <img width="544" alt="4" src="https://user-images.githubusercontent.com/18128525/36385803-46e99d48-1559-11e8-999f-db1ff0cba03c.png">
 
-## API Documentatiom
+## API Documentation
    ### GET movies by genre
    * https://api.themoviedb.org/3/genre/${CATEGORY}/movies
    ### Playing now
