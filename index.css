@@ -28,6 +28,9 @@ header h1 span {
   font-size: 5rem;
   color: tomato;
 }
+input{
+  color: black;
+}
 /* input:hover {
   color: blue;
   background-color: yellow;
